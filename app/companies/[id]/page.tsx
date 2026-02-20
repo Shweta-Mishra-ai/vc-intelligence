@@ -207,7 +207,7 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
                 ))}
                 {(!enrichmentData || enrichmentData.signals.length === 0) && (
                   <p className="text-sm text-muted-foreground">
-                    No signals available. Click "Enrich Data" to gather intelligence.
+                    No signals available. Click &quot;Enrich Data&quot; to gather intelligence.
                   </p>
                 )}
               </div>
