@@ -1,0 +1,19 @@
+---
+pid: 32712
+cwd: |
+  C:\Users\Shweta Mishra\.cursor
+active_command: |
+  git init
+  git add .
+  git commit -m "Initial commit: VC Intelligence MVP"
+  git branch -M main
+  git remote add origin https://github.com/Shweta-Mishra-ai/vc-intelligence.git
+  git push -u origin main
+---
+PS C:\Users\Shweta Mishra\.cursor> git init
+>> git add .
+>> git commit -m "Initial commit: VC Intelligence MVP"
+>> git branch -M main
+>> git remote add origin https://github.com/Shweta-Mishra-ai/vc-intelligence.git
+>> git push -u origin main
+Initialized empty Git repository in C:/Users/Shweta Mishra/.cursor/.git/

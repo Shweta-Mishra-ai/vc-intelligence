@@ -1,0 +1,46 @@
+---
+pid: 2260
+cwd: |
+  C:\Users\Shweta Mishra\.cursor\vc-intelligence
+active_command: npm run dev
+last_command: npm install
+last_exit_code: 0
+---
+PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm install
+
+up to date, audited 444 packages in 22s
+
+156 packages are looking for funding
+  run `npm fund` for details
+
+20 vulnerabilities (1 moderate, 19 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:        
+  npm audit fix --force
+
+Run `npm audit` for details.
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
+
+> vc-intelligence@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 2s
+ ○ Compiling / ...
+ ✓ Compiled / in 2.8s (562 modules)
+ GET / 200 in 2975ms
+ ✓ Compiled in 145ms (277 modules)
+   Reload env: .env.local
+   Reload env: .env.local
+ ✓ Compiled in 65ms (539 modules)
+ ○ Compiling /companies ...
+ ✓ Compiled /companies in 629ms (725 modules)   
+ ✓ Compiled /lists in 138ms (743 modules)       
+ ✓ Compiled /saved in 274ms (751 modules)
