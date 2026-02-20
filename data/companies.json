@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "name": "TechFlow AI",
+    "website": "https://techflow.ai",
+    "industry": "Artificial Intelligence",
+    "stage": "Series A",
+    "shortDescription": "AI-powered workflow automation platform for enterprise teams"
+  },
+  {
+    "id": "2",
+    "name": "CloudSecure",
+    "website": "https://cloudsecure.io",
+    "industry": "Cybersecurity",
+    "stage": "Seed",
+    "shortDescription": "Next-generation cloud security and compliance monitoring"
+  },
+  {
+    "id": "3",
+    "name": "DataViz Pro",
+    "website": "https://datavizpro.com",
+    "industry": "Data Analytics",
+    "stage": "Series B",
+    "shortDescription": "Advanced data visualization and business intelligence tools"
+  },
+  {
+    "id": "4",
+    "name": "MediConnect",
+    "website": "https://mediconnect.health",
+    "industry": "Healthcare",
+    "stage": "Series A",
+    "shortDescription": "Telemedicine platform connecting patients with specialists"
+  },
+  {
+    "id": "5",
+    "name": "FinTech Solutions",
+    "website": "https://fintechsolutions.com",
+    "industry": "Financial Technology",
+    "stage": "Series C",
+    "shortDescription": "Enterprise fintech infrastructure for payment processing"
+  },
+  {
+    "id": "6",
+    "name": "EcoEnergy",
+    "website": "https://ecoenergy.tech",
+    "industry": "Clean Energy",
+    "stage": "Seed",
+    "shortDescription": "Smart grid technology for renewable energy management"
+  },
+  {
+    "id": "7",
+    "name": "EduLearn",
+    "website": "https://edulearn.io",
+    "industry": "EdTech",
+    "stage": "Series A",
+    "shortDescription": "Personalized learning platform with AI-driven curriculum"
+  },
+  {
+    "id": "8",
+    "name": "RetailAI",
+    "website": "https://retailai.com",
+    "industry": "E-commerce",
+    "stage": "Series B",
+    "shortDescription": "AI-powered inventory and demand forecasting for retailers"
+  },
+  {
+    "id": "9",
+    "name": "HealthTrack",
+    "website": "https://healthtrack.app",
+    "industry": "Healthcare",
+    "stage": "Seed",
+    "shortDescription": "Wearable device integration for personalized health monitoring"
+  },
+  {
+    "id": "10",
+    "name": "CodeSync",
+    "website": "https://codesync.dev",
+    "industry": "Developer Tools",
+    "stage": "Series A",
+    "shortDescription": "Collaborative coding platform with real-time synchronization"
+  },
+  {
+    "id": "11",
+    "name": "LogiChain",
+    "website": "https://logichain.io",
+    "industry": "Supply Chain",
+    "stage": "Series B",
+    "shortDescription": "Blockchain-based supply chain transparency platform"
+  },
+  {
+    "id": "12",
+    "name": "SocialSphere",
+    "website": "https://socialsphere.net",
+    "industry": "Social Media",
+    "stage": "Series A",
+    "shortDescription": "Enterprise social media management and analytics suite"
+  },
+  {
+    "id": "13",
+    "name": "AutoDrive",
+    "website": "https://autodrive.tech",
+    "industry": "Automotive",
+    "stage": "Series C",
+    "shortDescription": "Autonomous vehicle software and sensor fusion technology"
+  },
+  {
+    "id": "14",
+    "name": "RealEstate Pro",
+    "website": "https://realestatepro.ai",
+    "industry": "Real Estate",
+    "stage": "Seed",
+    "shortDescription": "AI-powered property valuation and market analysis platform"
+  },
+  {
+    "id": "15",
+    "name": "FoodTech Innovations",
+    "website": "https://foodtech.io",
+    "industry": "Food Technology",
+    "stage": "Series A",
+    "shortDescription": "Sustainable food production technology and supply chain optimization"
+  }
+]
