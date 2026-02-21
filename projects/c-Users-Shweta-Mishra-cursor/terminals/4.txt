@@ -1,19 +1,24 @@
 ---
-pid: 32712
+pid: 77128
 cwd: |
-  C:\Users\Shweta Mishra\.cursor
-active_command: |
-  git init
-  git add .
-  git commit -m "Initial commit: VC Intelligence MVP"
-  git branch -M main
-  git remote add origin https://github.com/Shweta-Mishra-ai/vc-intelligence.git
-  git push -u origin main
+  C:\Users\Shweta Mishra\.cursor\vc-intelligence
+active_command: npm run dev
+last_command: cd vc-intelligence
+last_exit_code: 0
 ---
-PS C:\Users\Shweta Mishra\.cursor> git init
->> git add .
->> git commit -m "Initial commit: VC Intelligence MVP"
->> git branch -M main
->> git remote add origin https://github.com/Shweta-Mishra-ai/vc-intelligence.git
->> git push -u origin main
-Initialized empty Git repository in C:/Users/Shweta Mishra/.cursor/.git/
+PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
+
+> vc-intelligence@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.    
+ ⚠ Port 3002 is in use, trying 3003 instead.    
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3003
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.6s
+   Reload env: .env.local

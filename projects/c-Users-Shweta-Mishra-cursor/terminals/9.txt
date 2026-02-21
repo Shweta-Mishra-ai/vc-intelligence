@@ -1,0 +1,22 @@
+---
+pid: 28832
+cwd: |
+  C:\Users\Shweta Mishra\.cursor\vc-intelligence
+last_command: git push origin main
+last_exit_code: 0
+---
+PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git add .
+warning: in the working copy of 'app/companies/[id]/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/analyze/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/discover/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/thesis-analysis.tsx', LF will be replaced by CRLF the next time Git touches it
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git commit -m "feat: integrate Exa AI live search"
+[fix-live-enrichment 1fad2a3] feat: integrate Exa AI live search
+ 12 files changed, 1580 insertions(+), 206 deletions(-)
+ create mode 100644 app/api/analyze/route.ts    
+ create mode 100644 app/api/discover/route.ts   
+ create mode 100644 components/thesis-analysis.tsx
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git push origin main
+Everything up-to-date
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence>

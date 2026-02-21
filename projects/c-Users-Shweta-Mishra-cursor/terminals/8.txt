@@ -1,0 +1,36 @@
+---
+pid: 91532
+cwd: |
+  C:\Users\Shweta Mishra\.cursor\vc-intelligence
+active_command: npm run dev
+last_command: cd vc-intelligence
+last_exit_code: 0
+---
+PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
+
+> vc-intelligence@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.    
+ ⚠ Port 3002 is in use, trying 3003 instead.    
+ ⚠ Port 3003 is in use, trying 3004 instead.    
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3004
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1580ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.8s (562 modules)
+ GET / 200 in 3040ms
+ ✓ Compiled in 194ms (277 modules)
+ ○ Compiling /companies ...
+ ✓ Compiled /companies in 587ms (725 modules)
+ ✓ Compiled /lists in 148ms (745 modules)
+ ✓ Compiled /api/discover in 278ms (475 modules)
+ POST /api/discover 200 in 3114ms
+ ○ Compiling /companies/[id] ...
+ ✓ Compiled /companies/[id] in 518ms (966 modules)
+ GET / 200 in 89ms
