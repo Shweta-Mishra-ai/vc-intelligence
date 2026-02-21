@@ -7,10 +7,10 @@ import { format } from "date-fns";
 
 interface EnrichmentData {
   summary: string;
-  whatTheyDo: string[];
+  bullets: string[];
   keywords: string[];
   signals: string[];
-  sourceUrls: string[];
+  sources: string[];
   timestamp: string;
 }
 
@@ -36,7 +36,7 @@ export function EnrichmentDisplay({ data }: EnrichmentDisplayProps) {
         </CardHeader>
         <CardContent>
           <ul className="space-y-2">
-            {data.whatTheyDo.map((item, index) => (
+            {data.bullets.map((item, index) => (
               <li key={index} className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary" />
                 <span className="text-sm">{item}</span>
@@ -92,7 +92,7 @@ export function EnrichmentDisplay({ data }: EnrichmentDisplayProps) {
             </span>
           </div>
           <div className="space-y-1">
-            {data.sourceUrls.map((url, index) => (
+            {data.sources.map((url, index) => (
               <a
                 key={index}
                 href={url}

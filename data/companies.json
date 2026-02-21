@@ -1,122 +1,122 @@
 [
   {
     "id": "1",
-    "name": "TechFlow AI",
-    "website": "https://techflow.ai",
-    "industry": "Artificial Intelligence",
-    "stage": "Series A",
-    "shortDescription": "AI-powered workflow automation platform for enterprise teams"
+    "name": "Vercel",
+    "website": "https://vercel.com",
+    "industry": "Developer Tools",
+    "stage": "Series C",
+    "shortDescription": "Platform for frontend developers, providing the speed and reliability innovators need to create at the moment of inspiration"
   },
   {
     "id": "2",
-    "name": "CloudSecure",
-    "website": "https://cloudsecure.io",
-    "industry": "Cybersecurity",
-    "stage": "Seed",
-    "shortDescription": "Next-generation cloud security and compliance monitoring"
+    "name": "Anthropic",
+    "website": "https://www.anthropic.com",
+    "industry": "Artificial Intelligence",
+    "stage": "Series C",
+    "shortDescription": "AI safety company working to build reliable, interpretable, and steerable AI systems"
   },
   {
     "id": "3",
-    "name": "DataViz Pro",
-    "website": "https://datavizpro.com",
-    "industry": "Data Analytics",
+    "name": "Linear",
+    "website": "https://linear.app",
+    "industry": "Developer Tools",
     "stage": "Series B",
-    "shortDescription": "Advanced data visualization and business intelligence tools"
+    "shortDescription": "The issue tracking tool you will enjoy using for building software"
   },
   {
     "id": "4",
-    "name": "MediConnect",
-    "website": "https://mediconnect.health",
-    "industry": "Healthcare",
-    "stage": "Series A",
-    "shortDescription": "Telemedicine platform connecting patients with specialists"
+    "name": "Stripe",
+    "website": "https://stripe.com",
+    "industry": "Financial Technology",
+    "stage": "Series I",
+    "shortDescription": "Financial infrastructure for the internet. Businesses of every size use Stripe to accept payments and manage their businesses online"
   },
   {
     "id": "5",
-    "name": "FinTech Solutions",
-    "website": "https://fintechsolutions.com",
-    "industry": "Financial Technology",
-    "stage": "Series C",
-    "shortDescription": "Enterprise fintech infrastructure for payment processing"
+    "name": "GitHub",
+    "website": "https://github.com",
+    "industry": "Developer Tools",
+    "stage": "Acquired",
+    "shortDescription": "The world's leading AI-powered developer platform to build, scale, and deliver secure software"
   },
   {
     "id": "6",
-    "name": "EcoEnergy",
-    "website": "https://ecoenergy.tech",
-    "industry": "Clean Energy",
-    "stage": "Seed",
-    "shortDescription": "Smart grid technology for renewable energy management"
+    "name": "Notion",
+    "website": "https://www.notion.so",
+    "industry": "Productivity",
+    "stage": "Series C",
+    "shortDescription": "The connected workspace where better, faster work happens"
   },
   {
     "id": "7",
-    "name": "EduLearn",
-    "website": "https://edulearn.io",
-    "industry": "EdTech",
-    "stage": "Series A",
-    "shortDescription": "Personalized learning platform with AI-driven curriculum"
+    "name": "Figma",
+    "website": "https://www.figma.com",
+    "industry": "Design",
+    "stage": "Acquired",
+    "shortDescription": "The collaborative interface design tool for building better products as a team"
   },
   {
     "id": "8",
-    "name": "RetailAI",
-    "website": "https://retailai.com",
-    "industry": "E-commerce",
-    "stage": "Series B",
-    "shortDescription": "AI-powered inventory and demand forecasting for retailers"
+    "name": "Slack",
+    "website": "https://slack.com",
+    "industry": "Collaboration",
+    "stage": "Acquired",
+    "shortDescription": "Where work happens. Connect your team with one place for messaging, tools and files"
   },
   {
     "id": "9",
-    "name": "HealthTrack",
-    "website": "https://healthtrack.app",
-    "industry": "Healthcare",
-    "stage": "Seed",
-    "shortDescription": "Wearable device integration for personalized health monitoring"
+    "name": "Discord",
+    "website": "https://discord.com",
+    "industry": "Social",
+    "stage": "Series H",
+    "shortDescription": "Your place to talk and hang out. Discord is a voice, video and text app used by hundreds of millions of people"
   },
   {
     "id": "10",
-    "name": "CodeSync",
-    "website": "https://codesync.dev",
+    "name": "Supabase",
+    "website": "https://supabase.com",
     "industry": "Developer Tools",
-    "stage": "Series A",
-    "shortDescription": "Collaborative coding platform with real-time synchronization"
+    "stage": "Series B",
+    "shortDescription": "The open source Firebase alternative. Build in a weekend, scale to millions"
   },
   {
     "id": "11",
-    "name": "LogiChain",
-    "website": "https://logichain.io",
-    "industry": "Supply Chain",
-    "stage": "Series B",
-    "shortDescription": "Blockchain-based supply chain transparency platform"
+    "name": "Tailwind CSS",
+    "website": "https://tailwindcss.com",
+    "industry": "Developer Tools",
+    "stage": "Bootstrapped",
+    "shortDescription": "A utility-first CSS framework for rapidly building custom user interfaces"
   },
   {
     "id": "12",
-    "name": "SocialSphere",
-    "website": "https://socialsphere.net",
-    "industry": "Social Media",
-    "stage": "Series A",
-    "shortDescription": "Enterprise social media management and analytics suite"
+    "name": "PlanetScale",
+    "website": "https://planetscale.com",
+    "industry": "Data & Infrastructure",
+    "stage": "Series C",
+    "shortDescription": "The serverless MySQL platform. Ship faster with a database that scales"
   },
   {
     "id": "13",
-    "name": "AutoDrive",
-    "website": "https://autodrive.tech",
-    "industry": "Automotive",
-    "stage": "Series C",
-    "shortDescription": "Autonomous vehicle software and sensor fusion technology"
+    "name": "Resend",
+    "website": "https://resend.com",
+    "industry": "Developer Tools",
+    "stage": "Series A",
+    "shortDescription": "The best API to reach humans. Email for developers"
   },
   {
     "id": "14",
-    "name": "RealEstate Pro",
-    "website": "https://realestatepro.ai",
-    "industry": "Real Estate",
-    "stage": "Seed",
-    "shortDescription": "AI-powered property valuation and market analysis platform"
+    "name": "Turso",
+    "website": "https://turso.tech",
+    "industry": "Data & Infrastructure",
+    "stage": "Series A",
+    "shortDescription": "The edge database powered by SQLite. Lightning-fast, globally distributed, and easy to use"
   },
   {
     "id": "15",
-    "name": "FoodTech Innovations",
-    "website": "https://foodtech.io",
-    "industry": "Food Technology",
-    "stage": "Series A",
-    "shortDescription": "Sustainable food production technology and supply chain optimization"
+    "name": "Clerk",
+    "website": "https://clerk.com",
+    "industry": "Developer Tools",
+    "stage": "Series B",
+    "shortDescription": "Drop-in authentication and user management for React, Next.js, and the modern web"
   }
 ]

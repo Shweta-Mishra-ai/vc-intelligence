@@ -23,10 +23,10 @@ import { EnrichmentLoader } from "@/components/enrichment-loader";
 
 interface EnrichmentData {
   summary: string;
-  whatTheyDo: string[];
+  bullets: string[];
   keywords: string[];
   signals: string[];
-  sourceUrls: string[];
+  sources: string[];
   timestamp: string;
 }
 
@@ -42,6 +42,7 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
   const [isEnriching, setIsEnriching] = useState(false);
   const [enrichmentData, setEnrichmentData] = useState<EnrichmentData | null>(null);
   const [enrichmentStep, setEnrichmentStep] = useState<string>("");
+  const [enrichmentError, setEnrichmentError] = useState<string | null>(null);
 
   // Load notes from localStorage
   useEffect(() => {
@@ -56,7 +57,18 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
     const savedEnrichment = localStorage.getItem(`company-${params.id}-enrichment`);
     if (savedEnrichment) {
       try {
-        setEnrichmentData(JSON.parse(savedEnrichment));
+        const parsed = JSON.parse(savedEnrichment);
+        // Handle backward compatibility: convert old format to new format
+        if (parsed.whatTheyDo && !parsed.bullets) {
+          parsed.bullets = parsed.whatTheyDo;
+        }
+        if (parsed.sourceUrls && !parsed.sources) {
+          parsed.sources = parsed.sourceUrls;
+        }
+        // Validate structure
+        if (parsed.summary && Array.isArray(parsed.bullets) && Array.isArray(parsed.keywords) && Array.isArray(parsed.signals)) {
+          setEnrichmentData(parsed);
+        }
       } catch (e) {
         console.error("Failed to parse saved enrichment data", e);
       }
@@ -102,6 +114,7 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
 
   const handleEnrich = async () => {
     setIsEnriching(true);
+    setEnrichmentError(null);
     setEnrichmentStep("Scraping site...");
 
     try {
@@ -111,30 +124,38 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ 
-          companyId: params.id, 
-          website: company.website,
-          companyName: company.name 
+          url: company.website
         }),
       });
 
       if (!response.ok) {
-        throw new Error("Enrichment failed");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP ${response.status}: Enrichment failed`);
       }
 
       setEnrichmentStep("Extracting signals...");
-      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       const data = await response.json();
+      
+      // Validate response structure
+      if (!data.summary || !Array.isArray(data.bullets) || !Array.isArray(data.keywords) || !Array.isArray(data.signals)) {
+        throw new Error("Invalid response format from enrichment API");
+      }
+
       setEnrichmentData(data);
       
       // Save to localStorage
       localStorage.setItem(`company-${params.id}-enrichment`, JSON.stringify(data));
+      setEnrichmentStep("Complete!");
+      
+      // Clear success message after a brief delay
+      setTimeout(() => setEnrichmentStep(""), 1000);
     } catch (error) {
       console.error("Enrichment error:", error);
-      alert("Failed to enrich company data. Please try again.");
+      const errorMessage = error instanceof Error ? error.message : "Failed to enrich company data. Please try again.";
+      setEnrichmentError(errorMessage);
     } finally {
       setIsEnriching(false);
-      setEnrichmentStep("");
     }
   };
 
@@ -163,6 +184,23 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
       </div>
 
       {isEnriching && <EnrichmentLoader step={enrichmentStep} />}
+
+      {enrichmentError && (
+        <Card className="border-destructive">
+          <CardContent className="pt-6">
+            <div className="flex items-center gap-3 text-destructive">
+              <p className="text-sm font-medium">Enrichment failed: {enrichmentError}</p>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setEnrichmentError(null)}
+              >
+                Dismiss
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {enrichmentData && !isEnriching && (
         <EnrichmentDisplay data={enrichmentData} />
