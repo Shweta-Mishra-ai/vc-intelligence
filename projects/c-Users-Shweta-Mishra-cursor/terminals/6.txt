@@ -1,10 +1,7 @@
 ---
-pid: 91532
+pid: 11048
 cwd: |
-  C:\Users\Shweta Mishra\.cursor\vc-intelligence
-active_command: npm run dev
-last_command: cd vc-intelligence
-last_exit_code: 0
+  C:\Users\Shweta Mishra\.cursor
 ---
 PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
 PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
@@ -34,3 +31,10 @@ PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
  ○ Compiling /companies/[id] ...
  ✓ Compiled /companies/[id] in 518ms (966 modules)
  GET / 200 in 89ms
+
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor> 
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor>

@@ -1,10 +1,7 @@
 ---
-pid: 77128
+pid: 3216
 cwd: |
-  C:\Users\Shweta Mishra\.cursor\vc-intelligence
-active_command: npm run dev
-last_command: cd vc-intelligence
-last_exit_code: 0
+  C:\Users\Shweta Mishra\.cursor
 ---
 PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
 PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
@@ -22,3 +19,10 @@ PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
  ✓ Starting...
  ✓ Ready in 2.6s
    Reload env: .env.local
+
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor> 
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor>

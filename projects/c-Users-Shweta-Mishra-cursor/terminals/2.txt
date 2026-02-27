@@ -1,10 +1,7 @@
 ---
-pid: 42488
+pid: 17112
 cwd: |
-  C:\Users\Shweta Mishra\.cursor\vc-intelligence
-active_command: npm run dev
-last_command: cd vc-intelligence
-last_exit_code: 0
+  C:\Users\Shweta Mishra\.cursor
 ---
 PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
 PS npm installweta Mishra\.cursor\vc-intelligence>
@@ -81,3 +78,10 @@ PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
  ✓ Compiled in 134ms (372 modules)
  ✓ Compiled in 155ms (372 modules)
  ✓ Compiled in 119ms (372 modules)
+
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor> 
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor>

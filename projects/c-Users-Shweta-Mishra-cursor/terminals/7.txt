@@ -1,9 +1,7 @@
 ---
-pid: 28832
+pid: 24228
 cwd: |
-  C:\Users\Shweta Mishra\.cursor\vc-intelligence
-last_command: git push origin main
-last_exit_code: 0
+  C:\Users\Shweta Mishra\.cursor
 ---
 PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
 PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git add .
@@ -20,3 +18,9 @@ PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git commit -m "feat: integrat
 PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git push origin main
 Everything up-to-date
 PS C:\Users\Shweta Mishra\.cursor\vc-intelligence>
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor> 
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor>

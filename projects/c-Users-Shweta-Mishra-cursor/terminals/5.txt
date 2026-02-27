@@ -1,33 +1,8 @@
 ---
-pid: 112964
+pid: 23192
 cwd: |
-  C:\Users\Shweta Mishra\.cursor\vc-intelligence
-active_command: npm run dev
-last_command: git checkout -b fix-live-enrichment
-last_exit_code: 0
+  C:\Users\Shweta Mishra\.cursor
 ---
-PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git add .
-warning: in the working copy of 'app/companies/[id]/page.tsx', LF will be replaced by CRLF the next time Git touches it
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence>
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git commit -m "fix: update mock data to real URLs and add fetch error handling"
-[main 5c3f201] fix: update mock data to real URLs and add fetch error handling
- 5 files changed, 380 insertions(+), 149 deletions(-)
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git push origin main
-Enumerating objects: 33, done.
-Counting objects: 100% (33/33), done.
-Delta compression using up to 24 threads        
-Compressing objects: 100% (15/15), done.
-Writing objects: 100% (20/20), 6.40 KiB | 728.00 KiB/s, done.
-Total 20 (delta 9), reused 0 (delta 0), pack-reused 0 (from 0)
-remote: Resolving deltas: 100% (9/9), completed with 6 local objects.
-To https://github.com/Shweta-Mishra-ai/vc-intelligence.git
-   1ac608e..5c3f201  main -> main
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git checkout -b fix-live-enrichment
-Switched to a new branch 'fix-live-enrichment'
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
-
-> vc-intelligence@0.1.0 dev
 > next dev
 
  ⚠ Port 3000 is in use, trying 3001 instead.
@@ -99,3 +74,12 @@ digest: "3279151479"
  ✓ Compiled in 190ms (445 modules)
  ✓ Compiled in 134ms (445 modules)
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\client-development\0.pack.gz'
+ ○ Compiling / ...
+ ✓ Compiled / in 924ms (439 modules)
+
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor> 
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor>
