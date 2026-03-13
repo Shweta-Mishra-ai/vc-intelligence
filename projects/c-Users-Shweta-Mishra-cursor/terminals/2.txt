@@ -1,84 +1,58 @@
 ---
-pid: 17112
+pid: 27096
 cwd: |
   C:\Users\Shweta Mishra\.cursor
 ---
-PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
-PS npm installweta Mishra\.cursor\vc-intelligence>
+hra\.cursor\vc-intelligence\.next\server\app\page.js:184:1)
+    at __webpack_require__ (C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\server\webpack-runtime.js:33:42)
+digest: "831514268"
+TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./app/page.tsx:9:103)
+    at (rsc)/./app/page.tsx (C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\server\app\page.js:184:1)
+    at __webpack_require__ (C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\server\webpack-runtime.js:33:42)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processTimers (node:internal/timers:538:9)
+    at async e7 (C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:398716)  
+    at async tS (C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:402230)  
+    at async tw (C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:402791)  
+    at async tw (C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:402922)  
+    at async tO (C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:36:2320)    
+    at async C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:36:2989 {       
+  digest: '831514268'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\server\webpack-runtime.js:33:42)
+    at eval (webpack-internal:///(rsc)/./app/page.tsx:9:103)
+    at (rsc)/./app/page.tsx (C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\server\app\page.js:184:1)
+    at __webpack_require__ (C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\server\webpack-runtime.js:33:42)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processTimers (node:internal/timers:538:9)
+    at async e7 (C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:398716)  
+    at async tS (C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:402230)  
+    at async tw (C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:402791)  
+    at async tw (C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:402922)  
+    at async tO (C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:36:2320)    
+    at async C:\Users\Shweta Mishra\.cursor\vc-intelligence\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:36:2989 {       
+  digest: '831514268',
+  page: '/'
+}
+Could not find files for /_error in .next/build-manifest.json
+Could not find files for /_error in .next/build-manifest.json
+ GET / 500 in 157ms
+ ✓ Compiled in 649ms (1109 modules)
+ ✓ Compiled in 628ms (1109 modules)
+ ✓ Compiled in 511ms (1109 modules)
+ ✓ Compiled in 584ms (1109 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\server-development\4.pack.gz_' -> 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\server-development\4.pack.gz'
+   Reload env: .env.local
 
-up to date, audited 444 packages in 5s
-
-156 packages are looking for funding
-  run `npm fund` for details
-
-20 vulnerabilities (1 moderate, 19 high)
-
-To address issues that do not require attention, run:
-  npm audit fix
-
-To address all issues (including breaking changes), run:        
-  npm audit fix --force
-
-Run `npm audit` for details.
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
-> vc-intelligence@0.1.0 dev
-> vc-intelligence@0.1.0 dev
-> next dev
-> vc-intelligence@0.1.0 dev
-> next dev
-> vc-intelligence@0.1.0 dev
-> vc-intelligence@0.1.0 dev
-> next dev
-> vc-intelligence@0.1.0 dev
-> next dev
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git branch -M main
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git remote add origin https://github.com/Shweta-Mishra-ai/vc-intelligence.git
-error: remote origin already exists.
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git push -u origin main      
  *  History restored 
 
-PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
+PS C:\Users\Shweta Mishra\.cursor> 
+ *  History restored 
 
-> vc-intelligence@0.1.0 dev
-> next dev
-
- ⚠ Port 3000 is in use, trying 3001 instead.
- ⚠ Port 3001 is in use, trying 3002 instead.    
-  ▲ Next.js 14.2.35
-  - Local:        http://localhost:3002
-  - Environments: .env.local
-
- ✓ Starting...
- ✓ Ready in 1716ms
- ○ Compiling / ...
- ✓ Compiled / in 3.2s (562 modules)
- GET / 200 in 3385ms
- ✓ Compiled in 257ms (277 modules)
- ○ Compiling /companies ...
- ✓ Compiled /companies in 626ms (725 modules)
- ✓ Compiled /api/discover in 145ms (397 modules)
- POST /api/discover 500 in 261ms
-   Reload env: .env.local
- ✓ Compiled in 460ms (739 modules)
- ✓ Compiled in 153ms (372 modules)
- ✓ Compiled in 140ms (372 modules)
- ✓ Compiled in 161ms (372 modules)
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\client-development\0.pack.gz'
- ✓ Compiled in 161ms (372 modules)
- ✓ Compiled in 105ms (372 modules)
- ✓ Compiled in 272ms (739 modules)
- ✓ Compiled in 192ms (739 modules)
- ✓ Compiled in 226ms (739 modules)
- ✓ Compiled in 195ms (739 modules)
- ✓ Compiled in 182ms (739 modules)
- ✓ Compiled in 154ms (372 modules)
- ✓ Compiled in 119ms (372 modules)
- ✓ Compiled in 118ms (372 modules)
- ✓ Compiled in 134ms (372 modules)
- ✓ Compiled in 155ms (372 modules)
- ✓ Compiled in 119ms (372 modules)
-
+PS C:\Users\Shweta Mishra\.cursor> 
  *  History restored 
 
 PS C:\Users\Shweta Mishra\.cursor> 

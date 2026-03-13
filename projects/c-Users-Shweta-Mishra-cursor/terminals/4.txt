@@ -1,25 +1,88 @@
 ---
-pid: 3216
+pid: 26708
 cwd: |
   C:\Users\Shweta Mishra\.cursor
 ---
-PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
-
-> vc-intelligence@0.1.0 dev
 > next dev
 
  ⚠ Port 3000 is in use, trying 3001 instead.
- ⚠ Port 3001 is in use, trying 3002 instead.    
- ⚠ Port 3002 is in use, trying 3003 instead.    
   ▲ Next.js 14.2.35
-  - Local:        http://localhost:3003
+  - Local:        http://localhost:3001
   - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 2.6s
+ ✓ Ready in 2s
+ ○ Compiling / ...
+ ✓ Compiled / in 2.3s (553 modules)
+ GET / 200 in 2538ms
+ ✓ Compiled in 177ms (277 modules)
+ ○ Compiling /companies ...
+ ✓ Compiled /companies in 550ms (725 modules)
+ GET /companies 200 in 702ms
+ ✓ Compiled /lists in 162ms (743 modules)
+ ✓ Compiled /saved in 117ms (751 modules)
+ GET /companies 200 in 104ms
+ ○ Compiling /companies/[id] ...
+ ✓ Compiled /companies/[id] in 539ms (859 modules)
+ ✓ Compiled in 1033ms (866 modules)
+ ✓ Compiled in 820ms (866 modules)
+ ✓ Compiled in 458ms (852 modules)
+ ✓ Compiled in 646ms (866 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ app\companies\[id]\page.tsx (62:12) @ Loader2
+ ⨯ ReferenceError: Loader2 is not defined
+    at CompanyDetailPage (./app/companies/[id]/page.tsx:56:97)
+digest: "3279151479"
+  60 |       <div className="flex items-center justify-center min-h-[400px]">
+  61 |         <div className="text-center space-y-2">
+> 62 |           <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" />
+     |            ^
+  63 |           <p className="text-sm text-muted-foreground">Loading company...</p>
+  64 |         </div>
+  65 |       </div>
+ GET /companies/10 500 in 510ms
+ ✓ Compiled in 850ms (866 modules)
+ ✓ Compiled in 526ms (866 modules)
+ ✓ Compiled in 112ms (440 modules)
+ ✓ Compiled in 159ms (866 modules)
+ ✓ Compiled in 92ms (440 modules)
+ ✓ Compiled in 245ms (866 modules)
+ ✓ Compiled in 190ms (866 modules)
+ ✓ Compiled in 157ms (866 modules)
+ ✓ Compiled in 160ms (866 modules)
+ ✓ Compiled in 225ms (878 modules)
+ ✓ Compiled in 196ms (878 modules)
    Reload env: .env.local
+ ✓ Compiled in 468ms (878 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\client-development\5.pack.gz_' -> 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\client-development\5.pack.gz'
+ ✓ Compiled in 133ms (446 modules)
+ ✓ Compiled in 139ms (446 modules)
+ ✓ Compiled in 137ms (446 modules)
+ ✓ Compiled in 163ms (446 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 108ms (446 modules)
+ ✓ Compiled in 199ms (862 modules)
+ ✓ Compiled in 277ms (876 modules)
+ ✓ Compiled in 254ms (876 modules)
+ ✓ Compiled in 258ms (876 modules)
+ ✓ Compiled in 201ms (876 modules)
+ ✓ Compiled in 202ms (876 modules)
+ ✓ Compiled in 193ms (445 modules)
+ ✓ Compiled in 184ms (445 modules)
+ ✓ Compiled in 510ms (876 modules)
+ ✓ Compiled in 303ms (876 modules)
+ ✓ Compiled in 190ms (445 modules)
+ ✓ Compiled in 134ms (445 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\Shweta Mishra\.cursor\vc-intelligence\.next\cache\webpack\client-development\0.pack.gz'
+ ○ Compiling / ...
+ ✓ Compiled / in 924ms (439 modules)
 
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor> 
+ *  History restored 
+
+PS C:\Users\Shweta Mishra\.cursor> 
  *  History restored 
 
 PS C:\Users\Shweta Mishra\.cursor> 

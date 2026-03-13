@@ -1,37 +1,29 @@
 ---
-pid: 11048
+pid: 26908
 cwd: |
   C:\Users\Shweta Mishra\.cursor
 ---
 PS C:\Users\Shweta Mishra\.cursor> cd vc-intelligence
-PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> npm run dev
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git add .
+warning: in the working copy of 'app/companies/[id]/page.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/analyze/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/api/discover/route.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/thesis-analysis.tsx', LF will be replaced by CRLF the next time Git touches it
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git commit -m "feat: integrate Exa AI live search"
+[fix-live-enrichment 1fad2a3] feat: integrate Exa AI live search
+ 12 files changed, 1580 insertions(+), 206 deletions(-)
+ create mode 100644 app/api/analyze/route.ts    
+ create mode 100644 app/api/discover/route.ts   
+ create mode 100644 components/thesis-analysis.tsx
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence> git push origin main
+Everything up-to-date
+PS C:\Users\Shweta Mishra\.cursor\vc-intelligence>
+ *  History restored 
 
-> vc-intelligence@0.1.0 dev
-> next dev
+PS C:\Users\Shweta Mishra\.cursor> 
+ *  History restored 
 
- ⚠ Port 3000 is in use, trying 3001 instead.
- ⚠ Port 3001 is in use, trying 3002 instead.    
- ⚠ Port 3002 is in use, trying 3003 instead.    
- ⚠ Port 3003 is in use, trying 3004 instead.    
-  ▲ Next.js 14.2.35
-  - Local:        http://localhost:3004
-  - Environments: .env.local
-
- ✓ Starting...
- ✓ Ready in 1580ms
- ○ Compiling / ...
- ✓ Compiled / in 2.8s (562 modules)
- GET / 200 in 3040ms
- ✓ Compiled in 194ms (277 modules)
- ○ Compiling /companies ...
- ✓ Compiled /companies in 587ms (725 modules)
- ✓ Compiled /lists in 148ms (745 modules)
- ✓ Compiled /api/discover in 278ms (475 modules)
- POST /api/discover 200 in 3114ms
- ○ Compiling /companies/[id] ...
- ✓ Compiled /companies/[id] in 518ms (966 modules)
- GET / 200 in 89ms
-
+PS C:\Users\Shweta Mishra\.cursor> 
  *  History restored 
 
 PS C:\Users\Shweta Mishra\.cursor> 
