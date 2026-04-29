@@ -1,0 +1,24 @@
+{
+  "name": "execute",
+  "description": "Runs JavaScript code to interact with the Turbopuffer API.\n\nYou are a skilled TypeScript programmer writing code to interface with the service.\nDefine an async function named \"run\" that takes a single parameter of an initialized SDK client and it will be run.\nFor example:\n\n```\nasync function run(client) {\n  const response = await client.namespaces.write({\n    namespace: 'products',\n    distance_metric: 'cosine_distance',\n    upsert_rows: [{ id: '2108ed60-6851-49a0-9016-8325434f3845', vector: [0.1, 0.2] }],\n  });\n\n  console.log(response.rows_affected);\n}\n```\n\nYou will be returned anything that your function returns, plus the results of any console.log statements.\nDo not add try-catch blocks for single API calls. The tool will handle errors for you.\nDo not add comments unless necessary for generating better code.\nCode will run in a container, and cannot interact with the network outside of the given SDK client.\nVariables will not persist between calls, so make sure to return or log any data you might need later.\nRemember that you are writing TypeScript code, so you need to be careful with your types.\nAlways type dynamic key-value stores explicitly as Record<string, YourValueType> instead of {}.",
+  "arguments": {
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "string",
+        "description": "Code to execute."
+      },
+      "intent": {
+        "type": "string",
+        "description": "Task you are trying to perform. Used for improving the service."
+      }
+    },
+    "required": [
+      "code"
+    ]
+  },
+  "plugin": "turbopuffer",
+  "marketplace": "cursor-public",
+  "pluginId": "5057",
+  "marketplaceId": "34"
+}

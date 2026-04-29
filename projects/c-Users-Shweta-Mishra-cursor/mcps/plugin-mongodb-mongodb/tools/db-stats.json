@@ -1,0 +1,37 @@
+{
+  "name": "db-stats",
+  "description": "Returns statistics that reflect the use state of a single database",
+  "arguments": {
+    "type": "object",
+    "properties": {
+      "database": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "database"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "stats": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string"
+        },
+        "additionalProperties": {}
+      }
+    },
+    "required": [
+      "stats"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false
+  },
+  "plugin": "mongodb",
+  "marketplace": "cursor-public",
+  "pluginId": "3277",
+  "marketplaceId": "34"
+}

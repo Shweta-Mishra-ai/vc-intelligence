@@ -1,0 +1,97 @@
+{
+  "name": "collection-indexes",
+  "description": "Describe the indexes for a collection",
+  "arguments": {
+    "type": "object",
+    "properties": {
+      "database": {
+        "type": "string"
+      },
+      "collection": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "database",
+      "collection"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "classicIndexes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "key": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            }
+          },
+          "required": [
+            "name",
+            "key"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "searchIndexes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "queryable": {
+              "type": "boolean"
+            },
+            "latestDefinition": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            }
+          },
+          "required": [
+            "name",
+            "type",
+            "status",
+            "queryable",
+            "latestDefinition"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "classicIndexesCount": {
+        "type": "number"
+      },
+      "searchIndexesCount": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "classicIndexes",
+      "searchIndexes",
+      "classicIndexesCount",
+      "searchIndexesCount"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false
+  }
+}

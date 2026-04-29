@@ -7,5 +7,13 @@
     "shell",
     "update-cursor-settings"
   ],
-  "managedSkillIds": []
+  "managedSkillIds": [
+    "babysit",
+    "canvas",
+    "create-hook",
+    "cursor-blame",
+    "split-to-prs",
+    "statusline",
+    "update-cli-config"
+  ]
 }
