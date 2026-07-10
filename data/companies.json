@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "name": "Vercel",
+    "website": "https://vercel.com",
+    "industry": "Developer Tools",
+    "stage": "Series C",
+    "shortDescription": "Platform for frontend developers, providing the speed and reliability innovators need to create at the moment of inspiration"
+  },
+  {
+    "id": "2",
+    "name": "Anthropic",
+    "website": "https://www.anthropic.com",
+    "industry": "Artificial Intelligence",
+    "stage": "Series C",
+    "shortDescription": "AI safety company working to build reliable, interpretable, and steerable AI systems"
+  },
+  {
+    "id": "3",
+    "name": "Linear",
+    "website": "https://linear.app",
+    "industry": "Developer Tools",
+    "stage": "Series B",
+    "shortDescription": "The issue tracking tool you will enjoy using for building software"
+  },
+  {
+    "id": "4",
+    "name": "Stripe",
+    "website": "https://stripe.com",
+    "industry": "Financial Technology",
+    "stage": "Series I",
+    "shortDescription": "Financial infrastructure for the internet. Businesses of every size use Stripe to accept payments and manage their businesses online"
+  },
+  {
+    "id": "5",
+    "name": "GitHub",
+    "website": "https://github.com",
+    "industry": "Developer Tools",
+    "stage": "Acquired",
+    "shortDescription": "The world's leading AI-powered developer platform to build, scale, and deliver secure software"
+  },
+  {
+    "id": "6",
+    "name": "Notion",
+    "website": "https://www.notion.so",
+    "industry": "Productivity",
+    "stage": "Series C",
+    "shortDescription": "The connected workspace where better, faster work happens"
+  },
+  {
+    "id": "7",
+    "name": "Figma",
+    "website": "https://www.figma.com",
+    "industry": "Design",
+    "stage": "Acquired",
+    "shortDescription": "The collaborative interface design tool for building better products as a team"
+  },
+  {
+    "id": "8",
+    "name": "Slack",
+    "website": "https://slack.com",
+    "industry": "Collaboration",
+    "stage": "Acquired",
+    "shortDescription": "Where work happens. Connect your team with one place for messaging, tools and files"
+  },
+  {
+    "id": "9",
+    "name": "Discord",
+    "website": "https://discord.com",
+    "industry": "Social",
+    "stage": "Series H",
+    "shortDescription": "Your place to talk and hang out. Discord is a voice, video and text app used by hundreds of millions of people"
+  },
+  {
+    "id": "10",
+    "name": "Supabase",
+    "website": "https://supabase.com",
+    "industry": "Developer Tools",
+    "stage": "Series B",
+    "shortDescription": "The open source Firebase alternative. Build in a weekend, scale to millions"
+  },
+  {
+    "id": "11",
+    "name": "Hugging Face",
+    "website": "https://huggingface.co",
+    "industry": "Artificial Intelligence",
+    "stage": "Series D",
+    "shortDescription": "The AI community building the future. Open source machine learning models and datasets"
+  },
+  {
+    "id": "12",
+    "name": "PlanetScale",
+    "website": "https://planetscale.com",
+    "industry": "Data & Infrastructure",
+    "stage": "Series C",
+    "shortDescription": "The serverless MySQL platform. Ship faster with a database that scales"
+  },
+  {
+    "id": "13",
+    "name": "Resend",
+    "website": "https://resend.com",
+    "industry": "Developer Tools",
+    "stage": "Series A",
+    "shortDescription": "The best API to reach humans. Email for developers"
+  },
+  {
+    "id": "14",
+    "name": "Turso",
+    "website": "https://turso.tech",
+    "industry": "Data & Infrastructure",
+    "stage": "Series A",
+    "shortDescription": "The edge database powered by SQLite. Lightning-fast, globally distributed, and easy to use"
+  },
+  {
+    "id": "15",
+    "name": "Clerk",
+    "website": "https://clerk.com",
+    "industry": "Developer Tools",
+    "stage": "Series B",
+    "shortDescription": "Drop-in authentication and user management for React, Next.js, and the modern web"
+  }
+]
