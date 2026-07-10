@@ -1,111 +1,102 @@
 import { NextRequest, NextResponse } from "next/server";
-import Exa from "exa-js";
+import { discoverRequestSchema } from "@/lib/validations/schemas";
+import { searchCompany as searchTavily } from "@/lib/services/tavily";
+import { searchCompanies as searchExa } from "@/lib/services/exa-service";
+import { rateLimit } from "@/lib/rate-limit";
+import { DiscoveredCompany } from "@/lib/types";
 
-export interface DiscoveredCompany {
-  id: string;
-  name: string;
-  website: string;
-  shortDescription: string;
-}
-
-/**
- * Generates a stable ID from a URL
- */
-function generateIdFromUrl(url: string, index: number): string {
+function getDomain(url: string): string {
   try {
-    const urlObj = new URL(url);
-    const domain = urlObj.hostname.replace(/^www\./, "");
-    const hash = domain.split("").reduce((acc, char) => {
-      return (acc << 5) - acc + char.charCodeAt(0);
-    }, 0);
-    return `discovered-${Math.abs(hash)}-${index}`;
+    const cleanUrl = url.trim().toLowerCase();
+    const urlObj = new URL(cleanUrl.startsWith("http") ? cleanUrl : `https://${cleanUrl}`);
+    return urlObj.hostname.replace(/^www\./, "");
   } catch {
-    return `discovered-${index}-${Date.now()}`;
+    return url.toLowerCase().replace(/^www\./, "");
   }
 }
 
-/**
- * Maps Exa search results to company format
- */
-function mapExaResultsToCompanies(
-  results: { url: string; title?: string | null; highlights?: string[] | null }[]
-): DiscoveredCompany[] {
-  return results.map((result, index) => {
-    const website = result.url;
-    const name =
-      result.title?.replace(/\s*[-|]\s*(Home|Official Website|Welcome).*$/i, "").trim() ||
-      (() => {
-        try {
-          const urlObj = new URL(website);
-          const domain = urlObj.hostname.replace(/^www\./, "");
-          const parts = domain.split(".");
-          return parts[0] ? parts[0].charAt(0).toUpperCase() + parts[0].slice(1) : domain;
-        } catch {
-          return "Unknown Company";
-        }
-      })();
-    const shortDescription =
-      result.highlights?.[0] ||
-      (Array.isArray(result.highlights) ? result.highlights.join(" ") : null) ||
-      "No description available.";
-    return {
-      id: generateIdFromUrl(website, index),
-      name,
-      website,
-      shortDescription: shortDescription.substring(0, 200).trim(),
-    };
-  });
-}
-
 export async function POST(request: NextRequest) {
+  // 1. Rate Limiting (30 requests per minute)
+  const ip = request.headers.get("x-forwarded-for") || "anonymous";
+  const limitCheck = rateLimit(`discover:${ip}`, 30, 60000);
+  if (!limitCheck.success) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again in a minute." },
+      { status: 429, headers: { "X-RateLimit-Remaining": "0" } }
+    );
+  }
+
   try {
     const body = await request.json();
-    const { query } = body;
-
-    if (!query || typeof query !== "string" || !query.trim()) {
+    
+    // 2. Schema Validation
+    const validation = discoverRequestSchema.safeParse(body);
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Missing or invalid query parameter" },
+        { error: "Invalid request payload", details: validation.error.format() },
         { status: 400 }
       );
     }
 
-    const apiKey = process.env.EXA_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json(
-        { error: "EXA_API_KEY is not configured" },
-        { status: 500 }
-      );
-    }
+    const { query } = validation.data;
 
-    const exa = new Exa(apiKey);
+    // 3. Invoke search engines in parallel
+    const [tavilyResults, exaResults] = await Promise.all([
+      searchTavily(`${query} startup company site:github.com OR site:linkedin.com OR site:crunchbase.com`),
+      searchExa(query)
+    ]);
 
-    const results = await exa.searchAndContents(query.trim(), {
-      type: "auto",
-      numResults: 10,
-      category: "company",
-      highlights: true,
+    const companiesMap = new Map<string, DiscoveredCompany>();
+
+    // Merge Exa Results (high quality semantic results)
+    exaResults.forEach((comp, index) => {
+      const domain = getDomain(comp.url);
+      companiesMap.set(domain, {
+        id: `exa-${domain.replace(/[^a-zA-Z0-9]/g, "-")}`,
+        name: comp.name,
+        website: comp.url,
+        shortDescription: comp.description,
+        source: "Exa AI Engine",
+      });
     });
 
-    if (!results.results || !Array.isArray(results.results)) {
-      return NextResponse.json(
-        { error: "Invalid response format from Exa API" },
-        { status: 500 }
-      );
-    }
+    // Merge Tavily Results (broad web results)
+    tavilyResults.forEach((comp, index) => {
+      const domain = getDomain(comp.url);
+      // Skip if it's not a real website (like social links, directories, etc.)
+      const isBlacklisted = [
+        "github.com", "linkedin.com", "twitter.com", "reddit.com", "youtube.com", 
+        "wikipedia.org", "facebook.com", "crunchbase.com", "medium.com", "news.ycombinator.com"
+      ].some(b => domain.includes(b));
+      
+      if (isBlacklisted) return;
 
-    const companies = mapExaResultsToCompanies(results.results);
+      if (!companiesMap.has(domain)) {
+        let name = comp.title;
+        name = name.replace(/\s*[-|]\s*(Home|Official Website|Welcome|Company|Inc|Corp|Ltd).*$/i, "").trim() || domain.split(".")[0];
+        name = name.charAt(0).toUpperCase() + name.slice(1);
 
-    return NextResponse.json({
-      companies,
-      query: query.trim(),
-      count: companies.length,
+        companiesMap.set(domain, {
+          id: `tavily-${domain.replace(/[^a-zA-Z0-9]/g, "-")}`,
+          name,
+          website: comp.url,
+          shortDescription: comp.content.substring(0, 200).trim() + "...",
+          source: "Tavily Search Engine",
+        });
+      }
     });
-  } catch (error) {
-    console.error("Discovery error:", error);
-    const errorMessage =
-      error instanceof Error ? error.message : "Failed to discover companies";
+
+    const companies = Array.from(companiesMap.values());
+
     return NextResponse.json(
-      { error: errorMessage },
+      { companies, query, count: companies.length },
+      { headers: { "X-RateLimit-Remaining": String(limitCheck.remaining) } }
+    );
+
+  } catch (error) {
+    console.error("Discovery route error:", error);
+    return NextResponse.json(
+      { error: "Failed to discover companies", details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }

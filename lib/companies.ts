@@ -7,6 +7,10 @@ export interface Company {
   industry?: string;
   stage?: string;
   shortDescription: string;
+  foundedYear?: number;
+  employeeCount?: number;
+  githubUrl?: string;
+  hqLocation?: string;
 }
 
 export function getCompanyById(id: string): Company | undefined {
