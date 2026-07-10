@@ -1,0 +1,46 @@
+{
+  "name": "mongodb-logs",
+  "description": "Returns the most recent logged mongod events",
+  "arguments": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "default": "global",
+        "type": "string",
+        "enum": [
+          "global",
+          "startupWarnings"
+        ]
+      },
+      "limit": {
+        "default": 50,
+        "type": "number"
+      }
+    },
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "logs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "totalLinesWritten": {
+        "type": "number"
+      },
+      "shownCount": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "logs",
+      "totalLinesWritten",
+      "shownCount"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false
+  }
+}

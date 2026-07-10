@@ -1,0 +1,20 @@
+{
+  "name": "get_key_value",
+  "description": "Retrieve a Key Value instance by ID",
+  "arguments": {
+    "type": "object",
+    "properties": {
+      "keyValueId": {
+        "description": "The ID of the Key Value instance to retrieve",
+        "type": "string"
+      }
+    },
+    "required": [
+      "keyValueId"
+    ]
+  },
+  "plugin": "render",
+  "marketplace": "cursor-public",
+  "pluginId": "1295",
+  "marketplaceId": "34"
+}
