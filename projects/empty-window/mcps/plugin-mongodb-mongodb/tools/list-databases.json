@@ -1,0 +1,42 @@
+{
+  "name": "list-databases",
+  "description": "List all databases for a MongoDB connection",
+  "arguments": {
+    "type": "object",
+    "properties": {},
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "databases": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "size": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "name",
+            "size"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "totalCount": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "databases",
+      "totalCount"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false
+  }
+}

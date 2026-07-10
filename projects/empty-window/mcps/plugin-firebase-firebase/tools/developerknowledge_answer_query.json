@@ -1,0 +1,27 @@
+{
+  "name": "developerknowledge_answer_query",
+  "description": "Use answer_query to get a grounded answer to a query about Google developer products. This tool has limited quota. This tool will synthesize information from the corpus to generate an answer to the query. answer_query grounds answers using the same corpus as search_documents. If you get a 429 out of quota error, use search_documents instead.",
+  "arguments": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "description": "Required. The query to answer.",
+        "type": "string"
+      }
+    },
+    "required": [
+      "query"
+    ],
+    "description": "Request message for AnswerQuery."
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "answerText": {
+        "description": "The answer to the query.",
+        "type": "string"
+      }
+    },
+    "description": "Response message for AnswerQuery."
+  }
+}

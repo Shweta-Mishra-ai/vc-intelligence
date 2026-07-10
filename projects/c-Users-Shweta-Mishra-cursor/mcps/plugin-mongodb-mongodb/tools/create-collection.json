@@ -1,0 +1,45 @@
+{
+  "name": "create-collection",
+  "description": "Creates a new collection in a database. If the database doesn't exist, it will be created automatically.",
+  "arguments": {
+    "type": "object",
+    "properties": {
+      "database": {
+        "type": "string"
+      },
+      "collection": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "database",
+      "collection"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "database": {
+        "type": "string"
+      },
+      "collection": {
+        "type": "string"
+      },
+      "created": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "database",
+      "collection",
+      "created"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false
+  },
+  "plugin": "mongodb",
+  "marketplace": "cursor-public",
+  "pluginId": "3277",
+  "marketplaceId": "34"
+}

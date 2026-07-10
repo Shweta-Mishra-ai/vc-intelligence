@@ -1,0 +1,12 @@
+{
+  "name": "list_workspaces",
+  "description": "List the workspaces that you have access to",
+  "arguments": {
+    "type": "object",
+    "properties": {}
+  },
+  "plugin": "render",
+  "marketplace": "cursor-public",
+  "pluginId": "1295",
+  "marketplaceId": "34"
+}

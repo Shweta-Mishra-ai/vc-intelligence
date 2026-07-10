@@ -1,0 +1,53 @@
+{
+  "name": "rename-collection",
+  "description": "Renames a collection in a MongoDB database",
+  "arguments": {
+    "type": "object",
+    "properties": {
+      "database": {
+        "type": "string"
+      },
+      "collection": {
+        "type": "string"
+      },
+      "newName": {
+        "type": "string"
+      },
+      "dropTarget": {
+        "default": false,
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "database",
+      "collection",
+      "newName"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "database": {
+        "type": "string"
+      },
+      "oldCollection": {
+        "type": "string"
+      },
+      "newCollection": {
+        "type": "string"
+      },
+      "renamed": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "database",
+      "oldCollection",
+      "newCollection",
+      "renamed"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false
+  }
+}
