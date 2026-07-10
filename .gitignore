@@ -34,3 +34,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editor cache and local configuration
+plugins/
+projects/
+skills-cursor/
+.gemini/
+.agents/
+

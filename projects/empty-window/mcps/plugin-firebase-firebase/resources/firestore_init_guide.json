@@ -1,5 +1,0 @@
-{
-  "uri": "firebase://guides/init/firestore",
-  "name": "firestore_init_guide",
-  "description": "guides the coding agent through configuring Firestore in the current project"
-}

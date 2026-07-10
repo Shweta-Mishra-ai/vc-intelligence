@@ -1,1 +1,0 @@
-This is the MongoDB MCP server.

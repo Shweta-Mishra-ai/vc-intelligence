@@ -1,8 +1,0 @@
-{
-  "name": "list_postgres_instances",
-  "description": "List all Postgres databases in your Render account",
-  "arguments": {
-    "type": "object",
-    "properties": {}
-  }
-}

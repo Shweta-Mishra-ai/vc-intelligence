@@ -1,5 +1,0 @@
-{
-  "uri": "firebase://guides/init/auth",
-  "name": "auth_init_guide",
-  "description": "guides the coding agent through configuring Firebase Authentication in the current project"
-}

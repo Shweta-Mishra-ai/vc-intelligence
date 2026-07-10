@@ -1,5 +1,0 @@
-{
-  "uri": "config://config",
-  "name": "config",
-  "description": "Server configuration, supplied by the user either as environment variables or as startup arguments"
-}
