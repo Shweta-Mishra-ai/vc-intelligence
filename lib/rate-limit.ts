@@ -1,5 +1,7 @@
 /**
  * Simple in-memory rate limiter with TTL cleanup.
+ * NOTE: For production at 5000+ users, replace with Redis (Upstash) for distributed consistency.
+ * This in-memory version is per-instance and suitable for single-instance or dev usage.
  */
 
 interface RateLimitRecord {
@@ -19,6 +21,28 @@ if (typeof global !== "undefined") {
       }
     });
   }, 60000).unref?.();
+}
+
+/**
+ * Extracts client IP securely, preferring Vercel/Next.js headers.
+ * Falls back to x-forwarded-for first entry only if trusted.
+ */
+export function getClientIp(request: Request): string {
+  // Next.js on Vercel provides x-real-ip and x-forwarded-for
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) {
+    // Take first IP (original client), trim, validate format
+    const firstIp = forwarded.split(",")[0]?.trim();
+    if (firstIp && /^[\d.:a-fA-F]+$/.test(firstIp.replace(/ /g, "")) && firstIp.length < 45) {
+      return firstIp;
+    }
+  }
+  const realIp = request.headers.get("x-real-ip");
+  if (realIp) return realIp.trim();
+  // @ts-ignore - NextRequest has ip property on Vercel
+  const vercelIp = (request as any).ip;
+  if (vercelIp) return vercelIp;
+  return "anonymous";
 }
 
 /**

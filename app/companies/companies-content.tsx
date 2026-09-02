@@ -47,13 +47,16 @@ export function CompaniesContent() {
   }, []);
 
   // Sync search query with URL params and trigger search if query exists
+  const [lastSearched, setLastSearched] = useState<string | null>(null);
   useEffect(() => {
     const search = searchParams.get("search");
-    if (search && search !== searchQuery) {
+    if (search && search !== lastSearched) {
+      setLastSearched(search);
       setSearchQuery(search);
       handleDiscover(search);
     }
-  }, [searchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, lastSearched]);
 
   // Store discovered companies in localStorage for detail page access
   useEffect(() => {
@@ -81,11 +84,19 @@ export function CompaniesContent() {
   }, [companies]);
 
   const handleDiscover = async (query: string) => {
-    if (!query.trim()) {
+    const trimmed = query.trim();
+    if (!trimmed) {
       setCompanies([]);
       setHasSearched(false);
       return;
     }
+    if (trimmed.length < 2) {
+      setSearchError("Search query must be at least 2 characters");
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
 
     setIsSearching(true);
     setSearchError(null);
@@ -98,8 +109,10 @@ export function CompaniesContent() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ query: query.trim() }),
+        body: JSON.stringify({ query: trimmed }),
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
@@ -113,8 +126,13 @@ export function CompaniesContent() {
         throw new Error("Invalid response format");
       }
     } catch (error) {
+      clearTimeout(timeoutId);
       console.error("Discovery error:", error);
-      setSearchError(error instanceof Error ? error.message : "Failed to discover companies");
+      if ((error as Error).name === "AbortError") {
+        setSearchError("Search timed out. Please try a more specific query.");
+      } else {
+        setSearchError(error instanceof Error ? error.message : "Failed to discover companies");
+      }
       setCompanies([]);
     } finally {
       setIsSearching(false);
@@ -246,9 +264,17 @@ export function CompaniesContent() {
 
       {/* Error state */}
       {searchError && (
-        <div className="rounded-2xl border border-rose-500/10 bg-rose-500/5 p-5 text-center space-y-2">
+        <div className="rounded-2xl border border-rose-500/10 bg-rose-500/5 p-5 text-center space-y-3">
           <p className="text-sm font-bold text-rose-400">Discovery search failed</p>
           <p className="text-xs text-slate-400">{searchError}</p>
+          <div className="flex justify-center gap-2">
+            <Button size="sm" variant="outline" onClick={() => { setSearchError(null); if (searchQuery.trim()) handleDiscover(searchQuery); }} className="h-7 text-xs">
+              Retry
+            </Button>
+            <Button size="sm" variant="ghost" onClick={() => setSearchError(null)} className="h-7 text-xs text-slate-400">
+              Dismiss
+            </Button>
+          </div>
         </div>
       )}
 

@@ -51,9 +51,9 @@ export function ScoreGauge({ score, className }: ScoreGaugeProps) {
   const strokeDashoffset = circumference - (animatedScore / 100) * circumference;
 
   return (
-    <div className={cn("flex flex-col items-center justify-center space-y-4", className)}>
+    <div className={cn("flex flex-col items-center justify-center space-y-4", className)} role="progressbar" aria-valuenow={score} aria-valuemin={0} aria-valuemax={100} aria-label={`Score ${score} out of 100`}>
       <div className="relative w-36 h-36">
-        <svg className="transform -rotate-90 w-full h-full">
+        <svg className="transform -rotate-90 w-full h-full" aria-hidden="true">
           {/* Base Background Circle */}
           <circle
             cx="72"

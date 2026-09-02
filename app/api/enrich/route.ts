@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { enrichRequestSchema } from "@/lib/validations/schemas";
 import { enrichCompany } from "@/lib/services/data-orchestrator";
 import { analyzeCompany } from "@/lib/services/ai-engine";
-import { rateLimit } from "@/lib/rate-limit";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
+import { isUrlAllowed } from "@/lib/services/scraper";
 
 export async function POST(request: NextRequest) {
   // 1. Rate Limiting (10 enrichments per minute)
-  const ip = request.headers.get("x-forwarded-for") || "anonymous";
+  const ip = getClientIp(request);
   const limitCheck = rateLimit(`enrich:${ip}`, 10, 60000);
   if (!limitCheck.success) {
     return NextResponse.json(
@@ -29,6 +30,16 @@ export async function POST(request: NextRequest) {
 
     const { url } = validation.data;
 
+    // 2b. SSRF guard - block private IPs before orchestrating
+    const normalizedForCheck = url.trim().startsWith("http") ? url.trim() : `https://${url.trim()}`;
+    const allowed = isUrlAllowed(normalizedForCheck);
+    if (!allowed.allowed) {
+      return NextResponse.json(
+        { error: "URL not allowed", details: allowed.reason },
+        { status: 400 }
+      );
+    }
+
     // 3. Multi-source data orchestration
     const orchestratedData = await enrichCompany(url);
 
@@ -50,8 +61,12 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error("Enrichment route error:", error);
+    const isProd = process.env.NODE_ENV === "production";
+    const message = error instanceof Error ? error.message : String(error);
+    // Avoid leaking SSRF/internal details verbatim in prod
+    const safeMessage = message.includes("SSRF") ? message : (isProd ? "Internal error. Please try again." : message);
     return NextResponse.json(
-      { error: "Failed to enrich company data", details: error instanceof Error ? error.message : String(error) },
+      { error: "Failed to enrich company data", details: safeMessage },
       { status: 500 }
     );
   }

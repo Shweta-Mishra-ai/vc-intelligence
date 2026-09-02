@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { analyzeRequestSchema } from "@/lib/validations/schemas";
 import { analyzeCompany } from "@/lib/services/ai-engine";
-import { rateLimit } from "@/lib/rate-limit";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { OrchestratedData } from "@/lib/services/data-orchestrator";
 
 export async function POST(request: NextRequest) {
   // 1. Rate Limiting (20 analyses per minute)
-  const ip = request.headers.get("x-forwarded-for") || "anonymous";
+  const ip = getClientIp(request);
   const limitCheck = rateLimit(`analyze:${ip}`, 20, 60000);
   if (!limitCheck.success) {
     return NextResponse.json(
@@ -71,8 +71,9 @@ Keywords: ${rawEnriched.keywords?.join(", ")}
 
   } catch (error) {
     console.error("Analysis route error:", error);
+    const isProd = process.env.NODE_ENV === "production";
     return NextResponse.json(
-      { error: "Failed to analyze company", details: error instanceof Error ? error.message : String(error) },
+      { error: "Failed to analyze company", details: isProd ? "Internal error. Please try again." : (error instanceof Error ? error.message : String(error)) },
       { status: 500 }
     );
   }
