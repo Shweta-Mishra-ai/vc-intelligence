@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { discoverRequestSchema } from "@/lib/validations/schemas";
 import { searchCompany as searchTavily } from "@/lib/services/tavily";
 import { searchCompanies as searchExa } from "@/lib/services/exa-service";
-import { rateLimit } from "@/lib/rate-limit";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { DiscoveredCompany } from "@/lib/types";
 
 function getDomain(url: string): string {
@@ -17,7 +17,7 @@ function getDomain(url: string): string {
 
 export async function POST(request: NextRequest) {
   // 1. Rate Limiting (30 requests per minute)
-  const ip = request.headers.get("x-forwarded-for") || "anonymous";
+  const ip = getClientIp(request);
   const limitCheck = rateLimit(`discover:${ip}`, 30, 60000);
   if (!limitCheck.success) {
     return NextResponse.json(
@@ -95,8 +95,10 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error("Discovery route error:", error);
+    // Don't leak internal error details in production
+    const isProd = process.env.NODE_ENV === "production";
     return NextResponse.json(
-      { error: "Failed to discover companies", details: error instanceof Error ? error.message : String(error) },
+      { error: "Failed to discover companies", details: isProd ? "Internal error. Please try again." : (error instanceof Error ? error.message : String(error)) },
       { status: 500 }
     );
   }

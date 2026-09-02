@@ -75,8 +75,17 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
   }, [params.id]);
 
   const handleSaveNotes = () => {
-    localStorage.setItem(`company-${params.id}-notes`, notes);
-    alert("Analyst notes saved successfully.");
+    try {
+      localStorage.setItem(`company-${params.id}-notes`, notes);
+      // Lightweight inline feedback instead of blocking alert
+      setEnrichmentStep("Notes saved ✓");
+      setTimeout(() => setEnrichmentStep(""), 1500);
+    } catch (e) {
+      console.error("Failed to save notes", e);
+      if (e instanceof DOMException && e.name === "QuotaExceededError") {
+        setEnrichmentError("Storage full — please clear old enrichments.");
+      }
+    }
   };
 
   const handleSaveToPipeline = () => {
@@ -87,7 +96,8 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
       
       const exists = pipeline.some((item: any) => item.companyId === params.id);
       if (exists) {
-        alert(`${company.name} is already in the deals pipeline.`);
+        setEnrichmentError(`${company.name} is already in the deals pipeline.`);
+        setTimeout(() => setEnrichmentError(null), 3000);
         return;
       }
 
@@ -98,9 +108,13 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
       });
 
       localStorage.setItem("vc-pipeline", JSON.stringify(pipeline));
-      alert(`Added ${company.name} to Pipeline (stage: Discovered)`);
+      setEnrichmentStep(`Added ${company.name} to Pipeline ✓`);
+      setTimeout(() => setEnrichmentStep(""), 2000);
     } catch (e) {
       console.error("Failed to save to pipeline", e);
+      if (e instanceof DOMException && e.name === "QuotaExceededError") {
+        setEnrichmentError("Storage full — please clear old data.");
+      }
     }
   };
 
@@ -132,10 +146,17 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
       
       setEnrichmentData(data);
       
-      // Save to localStorage
-      localStorage.setItem(`company-${params.id}-enrichment`, JSON.stringify(data));
+      // Save to localStorage with quota handling
+      try {
+        localStorage.setItem(`company-${params.id}-enrichment`, JSON.stringify(data));
+      } catch (e) {
+        if (e instanceof DOMException && e.name === "QuotaExceededError") {
+          console.warn("LocalStorage quota exceeded — enrichment kept in memory only");
+          setEnrichmentError("Enrichment succeeded but local storage is full. Clear old data to persist.");
+        } else throw e;
+      }
       setEnrichmentStep("Enrichment complete!");
-      setTimeout(() => setEnrichmentStep(""), 1000);
+      setTimeout(() => setEnrichmentStep(""), 1500);
     } catch (error) {
       console.error("Enrichment error:", error);
       const errorMessage = error instanceof Error ? error.message : "Failed to enrich company data. Please check your API keys.";
@@ -171,8 +192,14 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
       const data = await response.json();
       setEnrichmentData(data);
       
-      // Save back to localStorage
-      localStorage.setItem(`company-${params.id}-enrichment`, JSON.stringify(data));
+      // Save back to localStorage with quota handling
+      try {
+        localStorage.setItem(`company-${params.id}-enrichment`, JSON.stringify(data));
+      } catch (e) {
+        if (e instanceof DOMException && e.name === "QuotaExceededError") {
+          console.warn("LocalStorage quota exceeded — analysis kept in memory only");
+        }
+      }
     } catch (error) {
       console.error("Analysis error:", error);
       const errorMessage = error instanceof Error ? error.message : "Failed to generate AI analysis.";
@@ -340,7 +367,9 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
                       <Users className="h-4 w-4" />
                       Est. Size
                     </span>
-                    <span>{company.employeeCount ? `${company.employeeCount} employees` : "N/A"}</span>
+                    <span title={company.employeeCount ? "Estimated from GitHub contributors — not verified" : ""}>
+                      {company.employeeCount ? `~${company.employeeCount} (est.)` : "N/A"}
+                    </span>
                   </div>
                   {company.githubUrl && (
                     <div className="flex items-center justify-between text-slate-300">
@@ -461,8 +490,8 @@ export default function CompanyDetailPage({ params }: { params: { id: string } }
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <h3 className="font-bold text-sm text-slate-200">{comp.name}</h3>
-                        <Badge variant="destructive" className="bg-rose-500/10 text-rose-400 border-none font-semibold text-[10px] py-0.5 px-2">
-                          {comp.overlapPct}% overlap
+                        <Badge variant="destructive" className="bg-rose-500/10 text-rose-400 border-none font-semibold text-[10px] py-0.5 px-2" title="Overlap is estimated and refined by AI during analysis">
+                          ~{comp.overlapPct}% overlap (est.)
                         </Badge>
                       </div>
                       <a href={comp.website} target="_blank" rel="noopener noreferrer" className="text-[10px] text-slate-500 hover:text-slate-300 flex items-center gap-0.5 max-w-max">

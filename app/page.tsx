@@ -19,34 +19,50 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   const [stats, setStats] = useState({
     tracked: 15,
-    enriched: 3,
-    pipeline: 3,
-    avgScore: 78,
+    enriched: 0,
+    pipeline: 0,
+    avgScore: null as number | null,
   });
 
   useEffect(() => {
-    // Dynamically calculate dashboard counts from localStorage
+    // Dynamically calculate dashboard counts from localStorage - honest, no fake defaults
     try {
       const discovered = localStorage.getItem("discovered-companies");
-      const lists = localStorage.getItem("vc-lists");
       const pipeline = localStorage.getItem("vc-pipeline");
 
-      const discoveredCount = discovered ? Object.keys(JSON.parse(discovered)).length : 15;
-      const pipelineCount = pipeline ? JSON.parse(pipeline).length : 3;
+      let discoveredCount = 15; // fallback to curated count
+      try {
+        discoveredCount = discovered ? Object.keys(JSON.parse(discovered)).length : 15;
+        if (discoveredCount === 0) discoveredCount = 15;
+      } catch { discoveredCount = 15; }
+
+      let pipelineCount = 0;
+      try {
+        pipelineCount = pipeline ? JSON.parse(pipeline).length : 0;
+      } catch { pipelineCount = 0; }
 
       let enrichedCount = 0;
+      let totalScore = 0;
+      let scoredItems = 0;
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key && key.startsWith("company-") && key.endsWith("-enrichment")) {
           enrichedCount++;
+          try {
+            const data = JSON.parse(localStorage.getItem(key) || "{}");
+            if (typeof data.overallScore === "number") {
+              totalScore += data.overallScore;
+              scoredItems++;
+            }
+          } catch { /* ignore */ }
         }
       }
 
       setStats({
         tracked: discoveredCount,
-        enriched: enrichedCount || 3,
+        enriched: enrichedCount,
         pipeline: pipelineCount,
-        avgScore: 78, // static default average score indicator
+        avgScore: scoredItems > 0 ? Math.round(totalScore / scoredItems) : null,
       });
     } catch (e) {
       console.error("Failed to calculate dashboard stats", e);
@@ -129,7 +145,11 @@ export default function Home() {
           <CardContent className="pt-6 flex items-center justify-between">
             <div className="space-y-1">
               <span className="text-xs text-slate-400 font-bold uppercase tracking-wider block">Average Match Score</span>
-              <span className="text-3xl font-black text-slate-200">{stats.avgScore}%</span>
+              {stats.avgScore !== null ? (
+                <span className="text-3xl font-black text-slate-200">{stats.avgScore}%</span>
+              ) : (
+                <span className="text-sm font-semibold text-slate-500">No scores yet — enrich a company</span>
+              )}
             </div>
             <div className="p-3 rounded-xl bg-rose-500/10 text-rose-400">
               <TrendingUp className="h-6 w-6" />

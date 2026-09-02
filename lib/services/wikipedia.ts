@@ -63,15 +63,14 @@ export async function getCompanyInfo(companyName: string): Promise<WikipediaComp
 function parseWikiResponse(data: any): WikipediaCompanyInfo | null {
   if (!data || !data.extract) return null;
 
-  // Extract founded year using regex from the text
+  // Extract founded year using regex from the text - strict to avoid false positives
   let foundedYear: number | undefined;
-  const textToSearch = `${data.description || ""} ${data.extract}`.toLowerCase();
+  const textToSearch = `${data.description || ""} ${data.extract}`;
   
-  // Look for "founded in YYYY", "established in YYYY", "started in YYYY"
+  // Only accept year when near founding keywords to avoid war dates etc.
   const foundedPatterns = [
-    /(?:founded|established|started|incorporated|formed)\s+in\s+(\b(?:19\d{2}|20[0-2]\d)\b)/i,
-    /(\b(?:19\d{2}|20[0-2]\d)\b)\s+(?:founding|establishment|formation)/i,
-    /\b(?:19\d{2}|20[0-2]\d)\b/ // Fallback to any 4-digit starting with 19 or 20
+    /(?:founded|established|started|incorporated|formed)\s+(?:in\s+)?(\b(?:19\d{2}|20[0-2]\d)\b)/i,
+    /(?:founding|establishment|formation)\s+in\s+(\b(?:19\d{2}|20[0-2]\d)\b)/i,
   ];
 
   for (const pattern of foundedPatterns) {

@@ -46,8 +46,16 @@ export default function ListsPage() {
   }, []);
 
   const saveLists = (updatedLists: ListData) => {
-    localStorage.setItem("vc-lists", JSON.stringify(updatedLists));
-    setLists(updatedLists);
+    try {
+      localStorage.setItem("vc-lists", JSON.stringify(updatedLists));
+      setLists(updatedLists);
+    } catch (e) {
+      if (e instanceof DOMException && e.name === "QuotaExceededError") {
+        alert("Storage limit exceeded. Please delete some lists or clear old data.");
+      } else {
+        console.error("Failed to save lists", e);
+      }
+    }
   };
 
   const handleCreateList = () => {
@@ -98,9 +106,21 @@ export default function ListsPage() {
       c.shortDescription,
     ]);
 
+    const escapeCsvCell = (cell: string): string => {
+      // Prevent CSV injection (Excel formula injection)
+      let escaped = cell || "";
+      if (/^[=+\-@|\t\r]/.test(escaped)) {
+        escaped = "'" + escaped;
+      }
+      // Escape quotes and wrap in quotes
+      escaped = escaped.replace(/"/g, '""');
+      // Handle newlines/commas by quoting
+      return `"${escaped}"`;
+    };
+
     const csvContent = [
-      headers.join(","),
-      ...rows.map((row) => row.map((cell) => `"${cell}"`).join(",")),
+      headers.map(escapeCsvCell).join(","),
+      ...rows.map((row) => row.map(escapeCsvCell).join(",")),
     ].join("\n");
 
     const blob = new Blob([csvContent], { type: "text/csv" });

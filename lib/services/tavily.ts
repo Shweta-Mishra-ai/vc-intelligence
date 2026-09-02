@@ -27,6 +27,9 @@ export async function searchCompany(query: string): Promise<TavilyResult[]> {
     return [];
   }
 
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 8000);
+
   try {
     const response = await fetch("https://api.tavily.com/search", {
       method: "POST",
@@ -35,11 +38,14 @@ export async function searchCompany(query: string): Promise<TavilyResult[]> {
       },
       body: JSON.stringify({
         api_key: apiKey,
-        query: query,
+        query: query.slice(0, 400),
         search_depth: "basic",
         max_results: 5,
+        include_answer: false,
       }),
+      signal: controller.signal,
     });
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       console.error(`Tavily Search API error: ${response.status} ${response.statusText}`);
@@ -49,7 +55,12 @@ export async function searchCompany(query: string): Promise<TavilyResult[]> {
     const data = (await response.json()) as TavilySearchResponse;
     return data.results || [];
   } catch (error) {
-    console.error("Tavily Search API call failed:", error);
+    clearTimeout(timeoutId);
+    if ((error as Error).name === "AbortError") {
+      console.warn("Tavily Search API timed out");
+    } else {
+      console.error("Tavily Search API call failed:", error);
+    }
     return [];
   }
 }
