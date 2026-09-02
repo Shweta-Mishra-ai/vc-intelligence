@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { hasAiKey } from "@/lib/env";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const startedAt = Date.now();
   const checks: Record<string, { status: "ok" | "warn" | "fail"; message?: string }> = {

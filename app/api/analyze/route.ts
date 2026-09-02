@@ -4,6 +4,28 @@ import { analyzeCompany } from "@/lib/services/ai-engine";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { OrchestratedData } from "@/lib/services/data-orchestrator";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+export const maxDuration = 30;
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
+  });
+}
+
+export async function GET() {
+  return NextResponse.json(
+    { status: "ok", message: "Analyze API is live. Use POST with {enrichedData, thesis}" },
+    { headers: { "Access-Control-Allow-Origin": "*" } }
+  );
+}
+
 export async function POST(request: NextRequest) {
   // 1. Rate Limiting (20 analyses per minute)
   const ip = getClientIp(request);
