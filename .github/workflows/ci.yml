@@ -1,0 +1,28 @@
+name: CI - Build & Verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - name: Check API routes exist
+        run: |
+          test -f app/api/health/route.ts
+          test -f app/api/discover/route.ts
+          test -f app/api/enrich/route.ts
+          test -f app/api/analyze/route.ts
+          echo "All API routes present"

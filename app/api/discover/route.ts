@@ -5,6 +5,10 @@ import { searchCompanies as searchExa } from "@/lib/services/exa-service";
 import { rateLimit, getClientIp } from "@/lib/rate-limit";
 import { DiscoveredCompany } from "@/lib/types";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+export const maxDuration = 15;
+
 function getDomain(url: string): string {
   try {
     const cleanUrl = url.trim().toLowerCase();
@@ -13,6 +17,24 @@ function getDomain(url: string): string {
   } catch {
     return url.toLowerCase().replace(/^www\./, "");
   }
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    },
+  });
+}
+
+export async function GET() {
+  return NextResponse.json(
+    { status: "ok", message: "Discover API is live. Use POST with {query}" },
+    { headers: { "Access-Control-Allow-Origin": "*" } }
+  );
 }
 
 export async function POST(request: NextRequest) {
