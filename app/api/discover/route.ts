@@ -108,10 +108,38 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    const companies = Array.from(companiesMap.values());
+    let companies = Array.from(companiesMap.values());
+
+    // Fallback to curated dataset when external APIs return empty (no keys on Vercel) — ensures app always works
+    if (companies.length === 0) {
+      try {
+        const curated = await import("@/data/companies.json").then(m => m.default as any[]);
+        const q = query.toLowerCase();
+        const tokens = q.split(/\s+/).filter(t => t.length >= 2);
+        const filtered = curated.filter((c: any) => {
+          const haystack = `${c.name} ${c.shortDescription} ${c.industry || ""} ${c.stage || ""}`.toLowerCase();
+          // Match if full query substring OR any token appears
+          if (haystack.includes(q)) return true;
+          return tokens.some(tok => haystack.includes(tok));
+        });
+        // Return filtered if found, otherwise curated top 8 so UI never empty (marked as fallback)
+        const fallbackSource = filtered.length > 0 ? filtered : curated;
+        companies = fallbackSource.slice(0, 12).map((c: any) => ({
+          id: c.id,
+          name: c.name,
+          website: c.website,
+          shortDescription: c.shortDescription,
+          source: filtered.length > 0 ? "Curated Database (filtered)" : "Curated Database",
+          industry: c.industry,
+          stage: c.stage,
+        }));
+      } catch (e) {
+        console.warn("Curated fallback failed", e);
+      }
+    }
 
     return NextResponse.json(
-      { companies, query, count: companies.length },
+      { companies, query, count: companies.length, fallback: companies.length > 0 && (exaResults.length === 0 && tavilyResults.length === 0) },
       { headers: { "X-RateLimit-Remaining": String(limitCheck.remaining) } }
     );
 
